@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Snigleton Example - 1</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+
+<body>
+    <script>
+        class People {
+            constructor(name) {
+                if (typeof People.instance === 'object') {
+                    return People.instance;
+                }
+                this.peoples = {};
+                People.instance = this;
+                return this;
+            }
+
+            getPeople() {
+                return this.peoples;
+            }
+
+            addPeople(name, criminal_record, id) {
+                let peopleInfo = {
+                    name: name,
+                    criminal_record: criminal_record
+                }
+                this.peoples[id] = peopleInfo;
+
+                return this.peoples[name];
+            }
+        }
+
+        const Nazarko = new People();
+        const Valera = new People();
+        const Kostya = new People();
+
+        Nazarko.addPeople('Nazar', false, 1);
+        Valera.addPeople('Valera', true, 2);
+        Kostya.addPeople('Kostya', false, 3);
+
+        console.log(Nazarko.getPeople());
+        console.log(Valera.getPeople());
+        console.log(Kostya.getPeople());
+
+    </script>
+</body>
+
+</html>
