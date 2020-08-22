@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mediator - 1</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+
+<body>
+    <script>
+        class officialDealer {
+            constructor() {
+                this.customers = [];
+            }
+
+            orderAuto(customer, auto, info) {
+                const name = customer.getName();
+
+                console.log(`Order name: ${name}. Order auto is ${auto}`);
+                console.log(`Aditional info ${info}`);
+                this.addToCustomersList(name);
+            }
+
+            addToCustomersList(name) {
+                this.customers.push(name);
+            }
+
+            getCustomerList() {
+                return this.customer;
+            }
+        }
+
+        class Customer {
+            constructor(name, dealerMediator) {
+                this.name = name;
+                this.dealerMediator = dealerMediator;
+            }
+
+            getName() {
+                return this.name;
+            }
+
+            makeOrder(auto, info) {
+                this.dealerMediator.orderAuto(this, auto, info);
+            }
+        }
+
+        const mediator = new officialDealer();
+
+        const Nazar = new Customer('Nazar', mediator);
+        const Kostya = new Customer('Kostya', mediator);
+
+        Nazar.makeOrder('Tesla', 'With autopilot!');
+
+        Kostya.makeOrder('Audi', 'With parktronik!');
+
+        console.log(mediator.getCustomerList());
+    </script>
+</body>
+
+</html>

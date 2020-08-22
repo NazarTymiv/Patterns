@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Factory - 1</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+
+<body>
+    <script>
+        class BMW {
+            constructor(model, price, maxSpeed) {
+                this.model = model;
+                this.price = price;
+                this.maxSpeed = maxSpeed;
+            }
+        };
+        class BMWFactory {
+            create(type) {
+                if (type === "X5") return new BMW(type, 108000, 300);
+                if (type === "X6") return new BMW(type, 111000, 320);
+            }
+        };
+
+        const factory = new BMWFactory();
+
+        const x5 = factory.create("X5");
+        const x6 = factory.create("X6");
+
+        document.write(`
+            Model: BMW ${x5.model}
+            <br />
+            Price: ${x5.price}$
+            <br />
+            MaxSpeed: ${x5.maxSpeed}
+            `);
+        document.write(`
+            <br />
+            <br />
+            Model: BMW ${x6.model}
+            <br />
+            Price: ${x6.price}$
+            <br />
+            MaxSpeed: ${x6.maxSpeed}
+        `);
+    </script>
+</body>
+
+</html>

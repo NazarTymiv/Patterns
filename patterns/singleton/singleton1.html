@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sigleton - 1</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+
+<body>
+    <script>
+        var counterModule = (function () {
+
+            var count = 0, instance;
+
+            var getCounter = function () {
+                return count;
+            };
+
+            var increaseCounter = function () {
+                return count++;
+            };
+
+            var createInstance = function () {
+                return {
+                    getCounter: getCounter,
+                    increaseCounter: increaseCounter
+                }
+            }
+
+            return {
+                getInstance: function () {
+                    return instance || (instance = createInstance());
+                }
+            }
+
+        }());
+    </script>
+</body>
+
+</html>

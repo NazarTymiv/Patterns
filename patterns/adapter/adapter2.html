@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adapter - 2</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+
+<body>
+    <script>
+        class Soud1 {
+            port1() {
+                console.log('tra-tra-tra');
+            }
+        };
+
+        class Soud2 {
+            port2() {
+                console.log('bum-bum-bum');
+            }
+        };
+
+        class Soud2Adapter {
+            constructor(soud) {
+                this.soud = soud;
+            }
+            port1(soud) {
+                this.soud.port2();
+            }
+        };
+
+        class Souds {
+            startSoud(soud) {
+                soud.port1();
+            }
+        };
+
+        const mySouds = new Souds();
+        const oldSoud = new Soud1();
+
+        mySouds.startSoud(oldSoud);
+
+        const mySouds1 = new Souds();
+        const newSoud = new Soud2Adapter(new Soud2());
+
+        mySouds1.startSoud(newSoud);
+    </script>
+</body>
+
+</html>
